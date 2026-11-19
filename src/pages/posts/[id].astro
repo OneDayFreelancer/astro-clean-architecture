@@ -1,0 +1,13 @@
+---
+export const prerender = false;
+import {FormUpdatePostIsland, PostDetailPostIsland} from "@features/posts";
+const { id} = Astro.params;
+
+if (!id || isNaN(Number(id))) {
+    return Astro.redirect("/404");
+}
+---
+<div>
+    <FormUpdatePostIsland client:load postId = {Number(id)} />
+    <PostDetailPostIsland client:load postId = {Number(id)} />
+</div>

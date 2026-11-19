@@ -1,0 +1,2 @@
+minimumReleaseAgeExclude:
+  - '@astrojs/node@11.1.14'

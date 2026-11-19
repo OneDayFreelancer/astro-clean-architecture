@@ -1,0 +1,9 @@
+---
+import BaseLayout from "@shared/presentation/layouts/BaseLayout.astro";
+import {PostListIsland, FormCreatePostIsland} from "@features/posts";
+---
+
+<BaseLayout>
+	<FormCreatePostIsland client:load />
+	<PostListIsland client:load />
+</BaseLayout>
