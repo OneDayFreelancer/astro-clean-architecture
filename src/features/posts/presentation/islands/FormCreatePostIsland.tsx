@@ -1,9 +1,9 @@
 import React from "react";
 import {useStore} from "@nanostores/react";
-import {container} from "@features/posts";
+import {userContainer} from "@features/posts";
 
 export const FormCreatePostIsland = () => {
-    const { mutate, loading, error } = useStore(container.createPost)
+    const { mutate, loading, error } = useStore(userContainer.createPost)
 
     const onSubmit = async (e: React.SubmitEvent<HTMLFormElement>) =>{
         e.preventDefault();

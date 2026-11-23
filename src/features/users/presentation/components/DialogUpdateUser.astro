@@ -1,0 +1,69 @@
+---
+import DialogCustom from "@shared/presentation/components/DialogCustom.astro";
+
+interface Props{
+    id: string;
+}
+
+const {id} = Astro.props;
+---
+<DialogCustom id={id} title="New user">
+   <form id="dialog-create-user">
+       <label>
+           <input hidden name="id" value={id} />
+       </label>
+       <label>
+           Name
+           <input type="text" name="name" required />
+       </label>
+       <label>
+           Username
+           <input type="text" name="username" required />
+       </label>
+       <label>
+           Email
+           <input type="email" name="email" required />
+       </label>
+       <button type="submit">Submit</button>
+   </form>
+</DialogCustom>
+
+<script>
+    import {userContainer} from "@features/users/container.client.ts";
+    const form = document.getElementById("dialog-create-user") as HTMLFormElement;
+    const dialog = form.closest("dialog")!;
+    const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const data = Object.fromEntries(new FormData(form)) as {
+            id: string;
+            name: string;
+            username: string;
+            email: string;
+        }
+        submitBtn.disabled = true;
+        try {
+            await userContainer.updateUser.execute(Number(data.id),{
+                name: data.name,
+                username: data.username,
+                email: data.email
+            });
+            form.reset();
+            dialog.close();
+            document.dispatchEvent(new CustomEvent("user:update"))
+        } catch (err) {
+            console.error("Error creating user", err);
+        } finally {
+            submitBtn.disabled = false;
+        }
+    })
+    document.addEventListener("user:get",(e) =>{
+        const user = (e as CustomEvent).detail;
+        (Object.keys(user) as string[]).forEach((key) => {
+            const input = form.elements.namedItem(key) as HTMLInputElement | null;
+            if(input) input.value = user[key];
+        })
+        dialog.showModal();
+    })
+</script>

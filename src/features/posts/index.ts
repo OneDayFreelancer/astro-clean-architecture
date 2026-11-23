@@ -2,4 +2,4 @@ export { PostListIsland } from "@features/posts/presentation/islands/PostListIsl
 export { PostDetailPostIsland } from "@features/posts/presentation/islands/PostDetailPostIsland";
 export { FormCreatePostIsland } from "@features/posts/presentation/islands/FormCreatePostIsland";
 export { FormUpdatePostIsland } from "@features/posts/presentation/islands/FormUpdatePostIsland";
-export {container} from "@features/posts/container.client";
+export {userContainer} from "@features/posts/container.client";

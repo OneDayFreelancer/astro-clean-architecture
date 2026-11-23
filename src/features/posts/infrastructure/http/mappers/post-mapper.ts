@@ -1,4 +1,4 @@
-import type Entity from "@features/posts/infrastructure/api/entities/post-entity";
+import type Entity from "@features/posts/infrastructure/http/entities/post-entity";
 import type {Post, CreatePost, UpdatePost} from "@features/posts/domain/models/post";
 
 export default class PostMapper {

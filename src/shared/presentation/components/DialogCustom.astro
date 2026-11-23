@@ -1,0 +1,51 @@
+---
+interface Props{
+    id : string;
+    title: string;
+}
+const {id, title} = Astro.props;
+---
+
+<dialog id={id} class="modal" aria-labelledby="{id}-title">
+    <form>
+        <h2 id={`${id}-title`}>{title}</h2>
+        <button aria-label="Cerrar">x</button>
+    </form>
+    <div class="body">
+        <slot />
+    </div>
+</dialog>
+<style>
+    .modal {
+        border: none;
+        border-radius: 12px;
+        padding: 1.5rem;
+        max-width: 32rem;
+        width: calc(100% - 2rem);
+    }
+    .modal::backdrop {
+        background: rgb(0 0 0 / 0.5);
+        backdrop-filter: blur(2px);
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+<script>
+    // Abrir: cualquier elemento con data-open-dialog="id-del-dialog"
+    document.querySelectorAll<HTMLElement>("[data-open-dialog]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const dialog = document.getElementById(btn.dataset.openDialog!) as HTMLDialogElement | null;
+            dialog?.showModal();
+        });
+    });
+
+    // Cerrar al hacer clic en el fondo (backdrop)
+    document.querySelectorAll<HTMLDialogElement>("dialog.modal").forEach((dialog) => {
+        dialog.addEventListener("click", (e) => {
+            if (e.target === dialog) dialog.close();
+        });
+    });
+</script>

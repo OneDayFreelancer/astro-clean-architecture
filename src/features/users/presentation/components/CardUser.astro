@@ -1,0 +1,28 @@
+---
+import type {UserGet} from "@features/users/domain/models/user-get.ts";
+
+interface Props {
+    user: UserGet
+}
+const {user} = Astro.props;
+---
+<div>
+    <div><a href={`/users/${user.id}`}>{user.name}</a></div>
+    <div>{user.username}</div>
+    <button data-update-user
+            data-id={user.id}
+            data-name = {user.name}
+            data-username = {user.username}
+            data-email = {user.email}
+    >update</button>
+</div>
+
+<script>
+    document.querySelectorAll<HTMLButtonElement>("[data-update-user]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            document.dispatchEvent(
+                new CustomEvent("user:get", { detail: { ...btn.dataset } })
+            );
+        });
+    });
+</script>

@@ -1,0 +1,12 @@
+---
+import {userContainer} from "@features/users";
+const {id} = Astro.params;
+const user = await userContainer.getUserById.execute(Number(id));
+if (!id || isNaN(Number(id))) {
+    return Astro.redirect("/404");
+}
+---
+<div>
+    <h1>{user.name}</h1>
+    <p>{user.username}</p>
+</div>

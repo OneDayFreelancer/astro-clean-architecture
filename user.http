@@ -1,0 +1,10 @@
+### GET request to example server
+POST https://jsonplaceholder.typicode.com/users
+Content-Type: application/json
+
+{
+  "name": "Juan Pérez",
+  "username": "jperez",
+  "email": "juan@example.com"
+}
+###

@@ -1,8 +1,8 @@
 import type {PostRepository} from "@features/posts/domain/adapters/out/post-repository.ts";
 import type {CreatePost, Post, UpdatePost} from "@features/posts/domain/models/post.ts";
 import type HttpClient from "@shared/infrastructure/http-client.ts";
-import type PostEntity from '@features/posts/infrastructure/api/entities/post-entity.ts'
-import PostMapper from "@features/posts/infrastructure/api/mappers/post-mapper.ts";
+import type PostEntity from '@features/posts/infrastructure/http/entities/post-entity.ts'
+import PostMapper from "@features/posts/infrastructure/http/mappers/post-mapper.ts";
 
 export class HttpPostRepository implements PostRepository{
 

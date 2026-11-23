@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useStore} from "@nanostores/react";
-import {container} from "@features/posts";
-import {$postId} from "@features/posts/presentation/store/posts.ts";
+import {userContainer} from "@features/posts";
+import {$postId} from "@features/posts/presentation/stores/posts.ts";
 
 interface Props {
     postId: number
@@ -10,8 +10,8 @@ interface Props {
 export const FormUpdatePostIsland = ({postId}: Props) => {
     useEffect(() => { $postId.set(postId); }, [postId]);
 
-    const { mutate, loading: updateLoading, error: updateError } = useStore(container.updatePost);
-    const { data: post, loading: getLoading, error: getError} = useStore(container.getPostById);
+    const { mutate, loading: updateLoading, error: updateError } = useStore(userContainer.updatePost);
+    const { data: post, loading: getLoading, error: getError} = useStore(userContainer.getPostById);
     if(getLoading) return <p>Loading...</p>
     if(getError) return <p>Error loading data</p>
 

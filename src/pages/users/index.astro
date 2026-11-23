@@ -1,0 +1,14 @@
+---
+import {DialogCreateUser, DialogUpdateUser, ListViewUser} from "@/features/users";
+import BaseLayout from "@shared/presentation/layouts/BaseLayout.astro";
+
+const idModalCreate = "dialog-component-create-user";
+const idModalUpdate = "dialog-component-update-user";
+---
+<BaseLayout>
+    <button data-open-dialog={idModalCreate}>New User</button>
+    <h1>Users</h1>
+    <ListViewUser />
+    <DialogCreateUser id={idModalCreate}/>
+    <DialogUpdateUser id={idModalUpdate}/>
+</BaseLayout>

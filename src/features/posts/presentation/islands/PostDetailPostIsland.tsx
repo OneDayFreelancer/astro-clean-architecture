@@ -1,6 +1,6 @@
 import {useStore} from "@nanostores/react";
-import {container} from "@features/posts";
-import {$postId} from "@features/posts/presentation/store/posts";
+import {userContainer} from "@features/posts";
+import {$postId} from "@features/posts/presentation/stores/posts";
 import {useEffect} from "react";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 export const PostDetailPostIsland = ({postId}:Props) => {
     useEffect(() => { $postId.set(postId); }, [postId]);
 
-    const {data: post, error, loading} = useStore(container.getPostById)
+    const {data: post, error, loading} = useStore(userContainer.getPostById)
     if(loading) return <div>Loading...</div>
     if(error) return <div>Error...</div>
 

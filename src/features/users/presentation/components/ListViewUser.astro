@@ -1,0 +1,16 @@
+---
+import {userContainer} from "@features/users/container.client.ts";
+import CardUser from "@features/users/presentation/components/CardUser.astro";
+const users = await userContainer.getUsers.execute();
+---
+<div>
+    <ul>
+        {users.map(user=> <li><CardUser user={user}/></li>)}
+    </ul>
+</div>
+
+<script>
+    import { navigate } from "astro:transitions/client";
+    document.addEventListener("user:created", () => navigate(location.href));
+    document.addEventListener("user:update", () => navigate(location.href));
+</script>

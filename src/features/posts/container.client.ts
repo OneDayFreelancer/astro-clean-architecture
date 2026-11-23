@@ -1,12 +1,12 @@
 import HttpClient from "@shared/infrastructure/http-client";
-import {HttpPostRepository} from "@features/posts/infrastructure/api/http-post-repository.ts";
+import {HttpPostRepository} from "@features/posts/infrastructure/http/http-post-repository.ts";
 import {GetAllPostUseCase} from "@features/posts/application/get-all-post-usecase.ts";
 import {
     createPostStore,
     getAllPostStore,
     getPostStore,
     updatePostStore
-} from "@features/posts/presentation/store/posts.ts";
+} from "@features/posts/presentation/stores/posts.ts";
 import {CreatePostUseCase} from "@features/posts/application/create-post-usecase.ts";
 import {GetPostUseCase} from "@features/posts/application/get-post-usecase.ts";
 import {UpdatePostUseCase} from "@features/posts/application/update-post-usecase.ts";
@@ -22,7 +22,7 @@ const getPost = new GetPostUseCase(postsRepository);
 const updatePost = new UpdatePostUseCase(postsRepository);
 
 // exports
-export const container = {
+export const userContainer = {
     getAllPost : getAllPostStore(getPosts),
     createPost: createPostStore(createPost),
     getPostById: getPostStore(getPost),
